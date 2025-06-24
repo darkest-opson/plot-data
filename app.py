@@ -4,12 +4,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 st.title("PEG Hits Visualization Tool")
-st.subheader("Enter Data Manually")
+st.subheader("Enter Data and Plot Settings")
 
-# Custom title input
+# Custom inputs for plot
 plot_title = st.text_input("Enter a title for your plots", value="Number of PEG Hits from Different Strains")
+xlabel = st.text_input("Label for X-axis", value="Different Strains")
+ylabel = st.text_input("Label for Y-axis", value="Number of PEG Hits")
 
-# Input for number of strains
+# Number of data points
 num_strains = st.number_input("How many strains do you want to enter?", min_value=1, max_value=20, step=1)
 
 # Input form
@@ -33,7 +35,6 @@ if submitted:
         'PEG Hits': hits
     }).dropna()
 
-    # Filter out empty strain names or missing values
     df = df[df['Strain'] != ""]
     
     if df.empty:
@@ -50,8 +51,8 @@ if submitted:
             fig, ax = plt.subplots()
             ax.bar(x, y, color=colors)
             ax.set_title(plot_title)
-            ax.set_xlabel("Different Strains")
-            ax.set_ylabel("Number of PEG Hits")
+            ax.set_xlabel(xlabel)
+            ax.set_ylabel(ylabel)
             plt.xticks(rotation=45)
             st.pyplot(fig)
 
@@ -59,8 +60,8 @@ if submitted:
             fig, ax = plt.subplots()
             ax.barh(x, y, color=colors)
             ax.set_title(plot_title)
-            ax.set_xlabel("Number of PEG Hits")
-            ax.set_ylabel("Different Strains")
+            ax.set_xlabel(ylabel)
+            ax.set_ylabel(xlabel)
             st.pyplot(fig)
 
         def plot_pie_chart():
@@ -74,8 +75,8 @@ if submitted:
             fig, ax = plt.subplots()
             ax.plot(x, y, marker='o', linestyle='-', color='darkblue')
             ax.set_title(plot_title)
-            ax.set_xlabel("Different Strains")
-            ax.set_ylabel("Number of PEG Hits")
+            ax.set_xlabel(xlabel)
+            ax.set_ylabel(ylabel)
             ax.grid(True)
             plt.xticks(rotation=45)
             st.pyplot(fig)
@@ -84,8 +85,8 @@ if submitted:
             fig, ax = plt.subplots()
             ax.scatter(x, y, s=100, color='darkgreen')
             ax.set_title(plot_title)
-            ax.set_xlabel("Different Strains")
-            ax.set_ylabel("Number of PEG Hits")
+            ax.set_xlabel(xlabel)
+            ax.set_ylabel(ylabel)
             ax.grid(True)
             plt.xticks(rotation=45)
             st.pyplot(fig)
@@ -104,7 +105,7 @@ if submitted:
             ax.set_title(plot_title, y=1.1)
             st.pyplot(fig)
 
-        # Display all plots
+        # Show all plots
         plot_bar_chart()
         plot_horizontal_bar()
         plot_pie_chart()
