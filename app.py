@@ -101,17 +101,6 @@ if submitted:
             ax.set_title("Number of PEG Hits from Different Strains", y=1.1)
             st.pyplot(fig)
 
-        # Plot selection
-        st.subheader("Choose a Plot Type")
-        plot_type = st.selectbox("Select a plot to view:", [
-            "Bar Chart",
-            "Horizontal Bar Chart",
-            "Pie Chart",
-            "Line Chart",
-            "Scatter Plot",
-            "Radar Chart"
-        ])
-
         
         plot_bar_chart()
         plot_horizontal_bar()
